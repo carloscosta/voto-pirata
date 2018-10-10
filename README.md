@@ -1,12 +1,72 @@
-# Decisoes distribuidas aka dd
-Sistema para tomadas de decisao em grupos horizontais usando principios de democracia liquida e outros.
+# Decisões distribuídas a.k.a. ``dd``
 
-## Requisitos
+Este documento descreve um sistema para tomadas de decisão distribuídas em grupos 
+horizontais usando principios de democracia líquida, ou seja baseada em um modelo 
+de representação dinâmica onde as pessoas podem votar livremente em seu gráfico social 
+em quem eles querem ter como representantes (amigos, colegas, família), para um conjunto 
+específico de tópicos (*tags*). Democracia Líquida é a forma mais flexível de 
+governança democrática que pode ser construída com tecnologia digital, operando como 
+um híbrido que possibilita votação direta ou delegada a qualquer momento.
 
-* Anonimo
-* Passivel de verificacao
-* Liquida: Pode escolher no sim, nao, em alguem e pode nao escolher nada
-* Tempo limitado para tomada de decisao.
+## Token Vote
+
+Um sistema de decisão ideal deve ser capaz de satisfazer, na maior medida possível, estas condições:
+
+* Anonimato (sigilo): o usuário deve poder votar em segredo.
+* Passível de Verificabilidade: o usuário deve ser capaz de verificar o registro do voto.
+* Líquida: O usuário pode escolher no sim, não, em alguém (delegar) e pode não escolher nada (abstenção).
+* Tempo limitado para tomada de decisão.
+* Integridade: o sistema deve ser capaz de verificar a contagem correta de votos.
+
+Além disso, devido ao risco de coerção através de violência física ou ameaças em contextos 
+propensos à violência política, uma opção capaz de proteger os eleitores coagidos deve ser introduzida:
+
+* Resistência: o eleitor deve ser capaz de anular o próprio voto, se necessário.
+
+No trabalho liderado pelos pesquisadores Hosp & Vorai[1], uma abordagem da Teoria da Informação foi 
+tomada para modelar os sistemas de votação, levando à conclusão de que existe uma tensão natural
+com um sistema que visa integridade perfeita, perfeito sigilo e perfeita verificabilidade. Todos 
+os três não podem ser alcançados simultaneamente quando o adversário é computacionalmente ilimitado, 
+capaz de forçar um sistema se o tempo for ilimitado ou houver memória disponível. Por essa razão, 
+consideramos indispensável implementar democracias digitais usando *blockchains*. 
+
+Com os efeitos de rede já em vigor, os blockchains são capazes de verificar a integridade das transações e evitar 
+o gasto duplo do *token*. Além disso, o blockchain não é seguro em uma rede assíncrona, mas é seguro e 
+ativo (para contagem de confirmação) em uma rede parcialmente síncrona como a Internet. O modelo de prova 
+de trabalho do Bitcoin consegue isso premiando a capacidade computacional de verificar os blocos de transação 
+(o que geralmente é chamado de mineração). Por essa razão, nosso *design* é baseado em *tokens* dentro de uma 
+rede blockchain operando como crypto-política.
+
+O que diferencia um voto do dinheiro (ou em termos mais amplos: uma economia política de uma economia financeira) 
+é que a moeda política é projetada para garantir os direitos de participação em condições justas a todos os membros
+de uma organização. Os direitos visam satisfazer a legitimidade geral na governança de uma instituição. Enquanto 
+o dinheiro é a linguagem do interesse próprio, os votos expressam as visões compartilhadas de uma comunidade. 
+A moeda política não é estritamente destinada ao comércio, mas à escolha social.
+
+Neste contexto, o *token* de votação visa ser um padrão para a democracia digital capaz de interoperar com outros *tokens*, 
+estabelecendo uma linguagem comum para a governança de organizações baseadas em blockchain. 
+Dentro do contexto das democracias líquidas, uma série de transações de votação é permitida com votos:
+
+* Voto Direto: É permitido ao usuário usar seus *tokens* para votar diretamente em questões como em uma democracia direta.
+* Delegação Básica: Usuário A pode delegar votos para B. Enquanto B tiver acesso a esses tokens, ele poderá usá-los para votar em nome de A.
+* Delegação Limitada de Tag: usupario A pode delegar votos a C sob a condição especificada de que C só pode usar esses tokens em problemas 
+  com uma tag específica. Se a delegação especificar que os votos delegados só podem ser usados em decisões com a tag ``#environment``, C 
+  não poderá usá-los em nenhum outro lugar, exceto nesses problemas específicos. Isso leva a um modelo de representação não baseado no território, 
+  mas no conhecimento.
+* Delegação transitória: Se B recebeu votos de A, ele pode delegar isso para F. Isso gera uma cadeia de delegações que ajuda a capacitar atores 
+  específicos dentro de uma comunidade. Se A não desejar ter terceiros recebendo os votos que ela delegou a B, ela poderá desativar a configuração 
+  transitiva do contrato de delegação. Delegações circulares (por exemplo, A recebendo os tokens que ela enviou ao B por meio de  F) são proibidas 
+  desde que a alocação original de votos de uma organização para seus membros tenha uma assinatura indicando quem é o proprietário soberano dos votos.
+* Votação primordial: Se B já usou os votos delegados que recebeu de A, mas A tem uma opinião diferente sobre uma determinada questão, como a proprietário 
+  soberana de seus votos, A sempre pode anular a decisão de B. Os eleitores sempre têm a palavra final sobre qualquer decisão com seus votos originais.
+* Votação Pública: Muitas vezes referida como a regra de ouro das democracias líquidas, todos os delegados têm o direito de saber como seu delegado votou
+  em qualquer questão com seus votos. Da mesma forma que os votos congressistas são públicos, em democracias líquidas competidores delegados em qualquer *tag*
+  têm um incentivo para construir uma reputação pública baseada em seu histórico de votação, a fim de atrair mais delegações.
+* Voto Secreto: Um método capaz de garantir transações de voto não rastreáveis ao eleitor. Isso é indispensável em contextos de eleições públicas realizadas 
+  em grandes populações que apresentam alto risco de coerção. Mesmo se o sigilo perfeito na transação do voto for alcançado, os usuários ainda poderão ter 
+  impressões digitais com metadados expostos. Por essa razão, pesquisas sobre integração com blockchains projetadas para transações anônimas com um histórico 
+  comprovado são encorajadas. Isso pode incluir uma taxa de mineração para liquidar a transação de voto que pode ser subsidiada pela organização executora ou 
+  paga diretamente pelos eleitores.
 
 ### Requisitos desejados no futuro
 
@@ -100,3 +160,5 @@ Quando o tempo se esgota comeca a contagem
 1. Nao pode mudar de decisao.
 2. Nao eh anonimo.
 3. varios outros.
+
+[1]: https://www.semanticscholar.org/paper/An-Information-Theoretic-Model-of-Voting-Systems-Hosp-Vora/24d55c866a7317dae11d37518b312ee460bc33d3 "An Information-Theoretic Model of Voting Systems"
