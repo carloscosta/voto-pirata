@@ -1,13 +1,15 @@
 # Decisões distribuídas a.k.a. ``dd``
 
-Este documento descreve um sistema para tomadas de decisão distribuídas em
-grupos horizontais usando principios de democracia líquida, ou seja baseada em
+Este documento descreve um sistema para tomadas de decisão distribuídas (``dd``) 
+em grupos horizontais usando principios de democracia líquida, ou seja baseada em
 um modelo de representação dinâmica onde as pessoas podem votar livremente em
-seu gráfico social em quem elas querem ter como representantes (amigos, colegas,
+seu grafo social em quem elas querem ter como representantes (amigos, colegas,
 família), para um conjunto específico de tópicos (*tags*). Democracia Líquida
 é a forma mais flexível de governança democrática que pode ser construída com
 tecnologia digital, operando como um híbrido que possibilita votação direta ou
 delegada a qualquer momento.
+
+![Alt text](/imgs/liquid.png "Democracias: Direta X Líquida")
 
 Nos concentramos em construir um projeto eficiente para uma máquina de governança 
 capaz de operar com blockchains que mantém seus operadores humanos como governantes 
@@ -16,7 +18,7 @@ sinalizando um estado verdadeiro ou falso, os votos indicam um valor booleano pa
 as decisões institucionais serem registradas em blocos encadeados.
 
 Os tokens de voto operam dentro dos limite institucional do partido, representado 
-por este conjunto entidades: 
+por este conjunto de entidades: 
 
     1. Organização, o próprio partido pirata 
     2. Membros, associados ao partido oficialmente aprovados e que tenham seu 
@@ -47,8 +49,8 @@ com votos são semelhantes aos encontrados durante a criação de um site:
 O contrato constitucional determina como os tokens de voto serão alocados aos membros, entre 
 outras decisões de governança. As condições de alocação são uma prerrogativa da organização, 
 dependendo de seus objetivos, ela pode estar alinhada com o direito de voto atribuído com base 
-em uma distribuição igualitária para todos os membros, como por exemplo, cada membro a mesma 
-quantidade de token de votos sempre que uma questão for aberta para votação.
+em uma distribuição igualitária para todos os membros, como por exemplo, para cada membro a mesma 
+quantidade de tokens de votos sempre que uma questão for aberta para votação.
 
 As configurações básicas encontradas em uma constituição são:
 
@@ -99,20 +101,20 @@ Uma organização consiste em uma coleção de questões, cada uma descrevendo u
 membros. As propriedades de associação descritas no contrato constitucional definem os direitos de voto e 
 postagem do membro. Uma questão em sua forma mais básica tem essas propriedades:
 
-* Descrição: Texto da decisão a ser tomada.
-* Tags: Categorias que descrevem a decisão dentro da organização. Isso ajuda os membros a navegar por 
+* __Descrição__: Texto da decisão a ser tomada.
+* __Tags__: Categorias que descrevem a decisão dentro da organização. Isso ajuda os membros a navegar por 
   questões, definir áreas ou equipes dentro de uma organização e limitar o escopo de uma delegação de votos. 
-* Assinaturas: Membros que estão criando a proposta. Poderá permanecer anônimo se as regras de governança do 
+* __Assinaturas__: Membros que estão criando a proposta. Poderá permanecer anônimo se as regras de governança do 
   partido permitirem isso.
-* Votação: As opções apresentadas para os eleitores participarem desta decisão.
-* Duração: Para a contagem final, uma votação aberta também deve definir seu escopo no tempo e definir o 
+* __Votação__: As opções apresentadas para os eleitores participarem desta decisão.
+* __Duração__: Para a contagem final, uma votação aberta também deve definir seu escopo no tempo e definir o 
   tipo de decisão que está sendo tomada. Existem dois tipos de decisões:
-  * Tática (limitado no tempo): São as questões que podem receber votos até que uma data de encerramento 
+  * _Tática (limitado no tempo)_: São as questões que podem receber votos até que uma data de encerramento 
     seja cumprida, em que uma determinada altura de bloqueio dentro da blockchain que implementa os 
     contratos inteligentes de voto pode ser definida como a linha final do processo eleitoral. Depois que 
     todas as transações tiverem sido registradas e um resultado final for registrado, todos os tokens serão 
     devolvidos aos eleitores correspondentes e poderão ser usados novamente em decisões futuras.
-  * Estratégico (ilimitado no tempo): Inquéritos sem fim que estão sempre registrando o consenso de um estado 
+  * _Estratégico (ilimitado no tempo)_: Inquéritos sem fim que estão sempre registrando o consenso de um estado 
     de decisão. os votos podem ser recuperados pelos eleitores a qualquer momento, se eles sentirem a 
     necessidade de interromper sua voz em apoio ou rejeição de uma decisão. Mas, desde que a ficha seja 
     designada para sinalizar uma preferência em uma cédula contratual sem data de fechamento, ela faz parte 
@@ -128,18 +130,8 @@ definidas no contrato constitucional da organização. Os blocos de construção
 Por padrão, o sistem fornecerá os mecanismos de escolha mais comumente usados para a interação de cédulas. 
 Inovação adicional em interfaces de cédula serão incentivada. O mais comum será:
 
-* SingleChoice: uma opção selecionável.
-* Escolha múltipla: uma ou mais opções selecionáveis.
-* [Cardinal](https://en.wikipedia.org/wiki/Cardinal_voting): Uma pontuação dada por opção com um intervalo 
-  de valor predefinido.
-* Rankeado ([ranked](https://en.wikipedia.org/wiki/Ranked_voting)): opções classificáveis como preferências 
-  classificadas. O [teorema da impossibilidade de Arrow](https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem) 
-  deve ser levado em consideração para qualquer inovação em relação às cédulas ranqueadas. Este teorema afirma que 
-  sistemas eleitorais baseados em rank não são capazes de satisfazer a justiça em três aspectos-chave ao mesmo tempo:
-  - Domínio irrestrito: todas as preferências de todos os eleitores são permitidas.
-  - Não-ditadura: nenhum eleitor possui o poder de determinar sempre a preferência social.
-  - Eficiência de Pareto: se todo eleitor preferir uma opção a outra, então a ordem de preferência societária 
-    resultante também deve essa preferência.
+* __Single Choice__: uma opção selecionável.
+* __Escolha múltipla__: uma ou mais opções selecionáveis.
 
 ### Opções
 
@@ -147,45 +139,41 @@ Para permitir o processamento de informações dos votos, os boletins carregam v
 opções. Isso permite que as transações de voto sinalizem um estado de decisão que atuará como uma força modelando 
 as escolhas institucionais para a organização. As opções podem então ser:
 
-* Verdadeiro: Ele indicará um valor booleano verdadeiro se selecionado (geralmente descrito com as seqüências 
+* __Verdadeiro__: Ele indicará um valor booleano verdadeiro se selecionado (geralmente descrito com as seqüências 
   de caracteres 'Sim' ou 'Positivas').
-* Falso: sinaliza um estado falso (por exemplo, pode exibir marcadores "Não" ou "Negativos").
-* Vinculado: a opção está conectada a outra decisão dentro da organização.
-* Candidato: um membro ou lista de membros da organização. Isso ajuda a eleger autoridades dentro da organização 
+* __Falso__: sinaliza um estado falso (por exemplo, pode exibir marcadores "Não" ou "Negativos").
+* __Vinculado__: a opção está conectada a outra decisão dentro da organização.
+* __Candidato__: um membro ou lista de membros da organização. Isso ajuda a eleger autoridades dentro da organização 
   ou pode ser usado para aprovações de associação.
 
 ### Critérios
 
 Finalmente, os critérios para contabilização para o resultado final ou contínuo de uma decisão dentro da organização.
 
-* Pluralidade: maioria simples ganha decisão.
-* Maioria: Uma porcentagem mínima é necessária para a decisão vencedora.
-* [Método de DHont](https://en.wikipedia.org/wiki/D%27Hondt_method): Amplamente utilizado pelas eleições dos 
-  estados-nação com base nas listas de membros.
+* __Pluralidade__: maioria simples ganha decisão.
+* __Maioria__: Uma porcentagem mínima é necessária para a decisão vencedora.
 * [Método de Schulze](https://en.wikipedia.org/wiki/Schulze_method): Comumente usado por comunidades de código 
-  aberto e Partes Piratas usando as cédulas de escolha ordenada.
-* [PageRank](http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf): Conta os votos que pesam a reputação dos 
-  eleitores em um gráfo, de acordo com o karma dos membros (participação).
+  aberto e Partidos Piratas worldwide, usando cédulas de escolha ordenada.
 
 ## Token de Voto
 
 Um sistema de decisão ideal deve ser capaz de satisfazer, na maior medida
 possível, estas condições:
 
-* Anonimato (sigilo): o usuário deve poder votar em segredo.
-* Passível de Verificabilidade: o usuário deve ser capaz de verificar o registro
+* __Anonimato (sigilo)__: o usuário deve poder votar em segredo.
+* __Passível de Verificabilidade__: o usuário deve ser capaz de verificar o registro
   do voto.
-* Líquida: O usuário pode escolher no sim, não, em alguém (delegar) e pode não
+* __Líquida__: O usuário pode escolher no sim, não, em alguém (delegar) e pode não
   escolher nada (abstenção).
 * Tempo limitado para tomada de decisão.
-* Integridade: o sistema deve ser capaz de verificar a contagem correta de
+* __Integridade__: o sistema deve ser capaz de verificar a contagem correta de
   votos.
 
 Além disso, devido ao risco de coerção através de violência física ou ameaças em
 contextos propensos à violência política, uma opção capaz de proteger os
 eleitores coagidos deve ser introduzida:
 
-* Resistência: o eleitor deve ser capaz de anular o próprio voto, se necessário.
+* __Resistência__: o eleitor deve ser capaz de anular o próprio voto, se necessário.
 
 No trabalho liderado pelos pesquisadores Hosp & Vorai [An Information-Theoretic
 Model of Voting Systems], uma abordagem da Teoria da Informação foi tomada para
@@ -219,17 +207,17 @@ comum para a governança de organizações baseadas em blockchain.  Dentro do
 contexto das democracias líquidas, uma série de transações de votação
 é permitida com votos:
 
-* Voto Direto: É permitido ao usuário usar seus *tokens* para votar diretamente
+* __Voto Direto__: É permitido ao usuário usar seus *tokens* para votar diretamente
   em questões como em uma democracia direta.
-* Delegação Básica: Usuário A pode delegar votos para B. Enquanto B tiver acesso
+* __Delegação Básica__: Usuário A pode delegar votos para B. Enquanto B tiver acesso
   a esses tokens, ele poderá usá-los para votar em nome de A.
-* Delegação Limitada de Tag: usupario A pode delegar votos a C sob a condição
+* __Delegação Limitada por Tag__: usupario A pode delegar votos a C sob a condição
   especificada de que C só pode usar esses tokens em problemas com uma tag
   específica. Se a delegação especificar que os votos delegados só podem ser
   usados em decisões com a tag ``#environment``, C não poderá usá-los em nenhum
   outro lugar, exceto nesses problemas específicos. Isso leva a um modelo de
   representação não baseado no território, mas no conhecimento.
-* Delegação transitória: Se B recebeu votos de A, ele pode delegar isso para F.
+* __Delegação transitória__: Se B recebeu votos de A, ele pode delegar isso para F.
   Isso gera uma cadeia de delegações que ajuda a capacitar atores específicos
   dentro de uma comunidade. Se A não desejar ter terceiros recebendo os votos que
   ela delegou a B, ela poderá desativar a configuração transitiva do contrato de
@@ -237,17 +225,17 @@ contexto das democracias líquidas, uma série de transações de votação
   enviou ao B por meio de  F) são proibidas desde que a alocação original de votos
   de uma organização para seus membros tenha uma assinatura indicando quem
   é o proprietário soberano dos votos.
-* Votação primordial: Se B já usou os votos delegados que recebeu de A, mas
+* __Votação primordial__: Se B já usou os votos delegados que recebeu de A, mas
   A tem uma opinião diferente sobre uma determinada questão, como a proprietário
   soberana de seus votos, A sempre pode anular a decisão de B. Os eleitores sempre
   têm a palavra final sobre qualquer decisão com seus votos originais.
-* Votação Pública: Muitas vezes referida como a regra de ouro das democracias
-  líquidas, todos os delegados têm o direito de saber como seu delegado votou em
+* __Votação Pública__: Muitas vezes referida como a regra de ouro das democracias
+  líquidas, todos os membros têm o direito de saber como seu delegado votou em
   qualquer questão com seus votos. Da mesma forma que os votos congressistas são
   públicos, em democracias líquidas competidores delegados em qualquer *tag* têm
   um incentivo para construir uma reputação pública baseada em seu histórico de
   votação, a fim de atrair mais delegações.
-* Voto Secreto: Um método capaz de garantir transações de voto não rastreáveis
+* __Voto Secreto__: Um método capaz de garantir transações de voto não rastreáveis
   ao eleitor. Isso é indispensável em contextos de eleições públicas realizadas
   em grandes populações que apresentam alto risco de coerção. Mesmo se o sigilo
   perfeito na transação do voto for alcançado, os usuários ainda poderão ter
@@ -257,7 +245,9 @@ contexto das democracias líquidas, uma série de transações de votação
   liquidar a transação de voto que pode ser subsidiada pela organização executora
   ou paga diretamente pelos eleitores.
 
-### Requisitos desejados no futuro
+# Definições acerca da experiência do usuário
+
+Decidir se é TODO ou não 
 
 * Conhecimento minimo - servidor com informacoes encriptadas.
 
